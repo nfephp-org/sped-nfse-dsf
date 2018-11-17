@@ -1,0 +1,324 @@
+{
+    "title": "RPS",
+    "type": "object",
+    "properties": {
+        "inscricaomunicipalprestador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{5,15}$"
+        },
+        "razaosocialprestador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{3,120}$"
+        },
+        "tiporps": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{3,20}$"
+        },
+        "serierps": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{2}$"
+        },
+        "numerorps": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 999999999999
+        },
+        "dataemissaorps": {
+            "required": true,
+            "type": "string",
+            "pattern": "^([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T(2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9])$"
+        },
+        "situacaorps": {
+            "required": true,
+            "type": "string",
+            "pattern": "N|C"
+        },
+        "serierpssubstituido": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^.{2, 10}$"
+        },
+        "numerorpssubstituido": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 999999999999
+        },
+        "numeronfsesubstituida": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 9999999999
+        },
+        "dataemissaonfsesubstituida": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]))$"
+        },
+        "serieprestacao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{2}$"
+        },
+        "inscricaomunicipaltomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{5,15}"
+        },
+        "cpfcnpjtomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11,14}$"
+        },
+        "razaosocialtomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{3,120}$"
+        },
+        "tipologradourotomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(Avenida|Rua|Rodovia|Ruela|Rio|Sítio|Sup Quadra|Travessa|Vale|Via|Viaduto|Viela|Vila|Vargem)$"
+        },
+        "logradourotomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,50}$"
+        },
+        "numeroenderecotomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,9}$"
+        },
+        "complementoenderecotomador": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^.{0,30}$"
+        },
+        "tipobairrotomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(Bairro|Bosque|Chácara|Conjunto|Desmembramento|Distrito|Favela|Fazenda|Gleba|Horto|Jardim|Loteamento|Núcleo|Parque|Residencial|Sítio|Tropical|Vila|Zona)$"
+        },
+        "bairrotomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,50}$"
+        },
+        "cidadetomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{5,10}$"
+        },
+        "cidadetomadordescricao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{3,50}$"
+        },
+        "ceptomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{8}$"
+        },
+        "emailtomador": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{3,60}$"
+        },
+        "codigoatividade": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,9}$"
+        },
+        "aliquotaatividade": {
+            "required": true,
+            "type": "number"
+        },
+        "tiporecolhimento": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(A|R)$"
+        },
+        "municipioprestacao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{5,10}$"
+        },
+        "municipioprestacaodescricao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{3,50}$"
+        },
+        "operacao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(A|B|C|D|J)$"
+        },
+        "tributacao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(C|E|F|K|N|T|G|H|M)$"
+        },
+        "valorpis": {
+            "required": true,
+            "type": "number"
+        },
+        "valorcofins": {
+            "required": true,
+            "type": "number"
+        },
+        "valorinss": {
+            "required": true,
+            "type": "number"
+        },
+        "valorir": {
+            "required": true,
+            "type": "number"
+        },
+        "valorcsll": {
+            "required": true,
+            "type": "number"
+        },
+        "aliquotapis": {
+            "required": true,
+            "type": "number"
+        },
+        "aliquotacofins": {
+            "required": true,
+            "type": "number"
+        },
+        "aliquotainss": {
+            "required": true,
+            "type": "number"
+        },
+        "aliquotair": {
+            "required": true,
+            "type": "number"
+        },
+        "aliquotacsll": {
+            "required": true,
+            "type": "number"
+        },
+        "descricaorps": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,1500}$"
+        },
+        "dddprestador": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{3}$"
+        },
+        "telefoneprestador": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{8}$"
+        },
+        "dddtomador": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{3}$"
+        },
+        "telefonetomador": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{8}$"
+        },
+        "motcancelamento": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^.{1,80}$"
+        },
+        "cpfcnpjintermediario": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{11,14}$"
+        },
+        "deducoes": {
+            "required": false,
+            "type": ["array","null"],
+            "minItems": 0,
+            "maxItems": 200,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "deducaopor": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(Percentual|Valor)$"
+                    },
+                    "tipodeducao": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^.{1,255}$"
+                    },
+                    "cpfcnpjreferencia": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{11,14}$"
+                    },
+                    "numeronfreferencia": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{1,10}$"
+                    },
+                    "valortotalreferencia": {
+                        "required": true,
+                        "type": "number"
+                    },
+                    "percentualdeduzir": {
+                        "required": true,
+                        "type": "number"
+                    },
+                    "valordeduzir": {
+                        "required": true,
+                        "type": "number"
+                    },
+                    "tributavel": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N)$"
+                    }
+                }
+            }    
+        },
+        "itens": {
+            "required": true,
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 25,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "discriminacaoservico": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^.{1,80}$"
+                    },
+                    "quantidade": {
+                        "required": true,
+                        "type": "number"
+                    },
+                    "valorunitario": {
+                        "required": true,
+                        "type": "number"
+                    },
+                    "valortotal": {
+                        "required": true,
+                        "type": "number"
+                    },
+                    "tributavel": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N)$"
+                    }
+                }
+            }
+        }
+    }
+}
