@@ -106,7 +106,7 @@ class Tools extends BaseTools
             }
             $content .= "</RPSConsulta>";
         }
-            $content .= "</Lote>"
+        $content .= "</Lote>"
             . "</ns1:ReqConsultaNFSeRPS>";
         
         Validator::isValid($content, $this->xsdpath."/ReqConsultaNFSeRPS.xsd");
