@@ -38,41 +38,41 @@ class Tools
             'municipio' => 'Belem',
             'uf' => 'PA',
             'siaf' => '0427',
-            'homologacao' => 'http://treinamento.dsfweb.com.br/WsNFe2/LoteRps.jws',
+            'homologacao' => 'http://www.issdigitalbel.com.br/WsNFe2/LoteRps.jws',
             'producao' => 'http://www.issdigitalbel.com.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
         ],
         '3509502' => [
             'municipio' => 'Campinas',
             'uf' => 'SP',
             'siaf' => '6291',
-            'homologacao' => 'http://treinamento.dsfweb.com.br/WsNFe2/LoteRps.jws',
+            'homologacao' => 'http://issdigital.campinas.sp.gov.br/WsNFe2/LoteRps.jws',
             'producao' => 'http://issdigital.campinas.sp.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
         ],
         '5002704' => [
             'municipio' => 'Campo Grande',
             'uf' => 'MS',
             'siaf' => '9051',
-            'homologacao' => 'http://treinamento.dsfweb.com.br/WsNFe2/LoteRps.jws',
+            'homologacao' => 'http://issdigital.pmcg.ms.gov.br/WsNFe2/LoteRps.jws',
             'producao' => 'http://issdigital.pmcg.ms.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
         ],
         '3303500' => [
             'municipio' => 'Nova Iguacu',
             'uf' => 'RJ',
             'siaf' => '5869',
-            'homologacao' => 'http://treinamento.dsfweb.com.br/WsNFe2/LoteRps.jws',
+            'homologacao' => 'http://www.notamaisfacil.novaiguacu.rj.gov.br/WsNFe2/LoteRps.jws',
             'producao' => 'http://www.notamaisfacil.novaiguacu.rj.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://wsnfe2.dsfnet.com.br'
         ],
         '2111300' => [
             'municipio' => 'Sao Luiz',
@@ -82,37 +82,37 @@ class Tools
             'producao' => 'http://stm.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://sistemas.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps.jws'
         ],
         '3552205' => [
             'municipio' => 'Sorocaba',
             'uf' => 'SP',
             'siaf' => '7145',
-            'homologacao' => 'http://treinamento.dsfweb.com.br/WsNFe2/LoteRps.jws',
+            'homologacao' => 'http://www.issdigitalsod.com.br/WsNFe2/LoteRps.jws',
             'producao' => 'http://www.issdigitalsod.com.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
         ],
         '2211001' => [
             'municipio' => 'Terezina',
             'uf' => 'PI',
             'siaf' => '1219',
-            'homologacao' => 'http://treinamento.dsfweb.com.br/WsNFe2/LoteRps.jws',
+            'homologacao' => 'http://www.issdigitalthe.com.br/WsNFe2/LoteRps.jws',
             'producao' => 'http://www.issdigitalthe.com.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
         ],
         '3170206' => [
             'municipio' => 'Uberlandia',
             'uf' => 'MG',
             'siaf' => '5403',
-            'homologacao' => 'http://treinamento.dsfweb.com.br/WsNFe2/LoteRps.jws',
+            'homologacao' => 'http://udigital.uberlandia.mg.gov.br/WsNFe2/LoteRps.jws',
             'producao' => 'http://udigital.uberlandia.mg.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => ''
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
         ]
     ];
     
@@ -241,7 +241,7 @@ class Tools
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
             . "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
             . "xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" "
-            . "xmlns:dsf=\"http://dsfnet.com.br\">"
+            . "xmlns:dsf=\"{$this->wsobj->soapns}\">"
             . "<soapenv:Body>"
             . "<dsf:$operation soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">"
             . "<mensagemXml xsi:type=\"xsd:string\"></mensagemXml>"

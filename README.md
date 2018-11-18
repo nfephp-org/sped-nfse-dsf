@@ -13,6 +13,8 @@ Atende as prefeituras de:
 - Teresina (PI)
 - Uberlândia (MG)
 
+> **NOTA: Apenas São Luiz (MA) possui ambiente de homologação !!** portanto todos os testes nos demais municipios deverão ser realizados em ambiente de produção. 
+
 [![Latest Stable Version][ico-stable]][link-packagist]
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
