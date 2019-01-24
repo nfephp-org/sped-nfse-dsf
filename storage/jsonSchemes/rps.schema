@@ -113,7 +113,7 @@
         "cidadetomador": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{5,10}$"
+            "pattern": "^[0-9]{4,10}$"
         },
         "cidadetomadordescricao": {
             "required": true,
@@ -147,7 +147,7 @@
         "municipioprestacao": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{5,10}$"
+            "pattern": "^[0-9]{4,10}$"
         },
         "municipioprestacaodescricao": {
             "required": true,

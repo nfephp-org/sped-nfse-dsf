@@ -67,17 +67,15 @@ class Signer
             throw SignerException::tagNotFound($tagname);
         }
         
-        //if (!self::existsSignature($content)) {
-            $dom = self::createSignature(
-                $certificate,
-                $dom,
-                $root,
-                $node,
-                $mark,
-                $algorithm,
-                $canonical
-            );
-        //}
+        $dom = self::createSignature(
+            $certificate,
+            $dom,
+            $root,
+            $node,
+            $mark,
+            $algorithm,
+            $canonical
+        );
         
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             . $dom->saveXML($dom->documentElement, LIBXML_NOXMLDECL);
@@ -88,7 +86,7 @@ class Signer
      * @param Certificate $certificate
      * @param \DOMDocument $dom
      * @param \DOMNode $root xml root
-     * @param \DOMElement $node node to be signed
+     * @param \DOMNode $node node to be signed
      * @param string $mark Marker signed attribute
      * @param int $algorithm cryptographic algorithm (opcional)
      * @param array $canonical parameters to format node for signature (opcional)
@@ -98,7 +96,7 @@ class Signer
         Certificate $certificate,
         DOMDocument $dom,
         DOMNode $root,
-        DOMElement $node,
+        DOMNode $node,
         $mark,
         $algorithm = OPENSSL_ALGO_SHA1,
         $canonical = self::CANONICAL
@@ -246,7 +244,7 @@ class Signer
         $publicKey = PublicKey::createFromContent($certificateContent);
         $signInfoNode = self::canonize($signature->getElementsByTagName('SignedInfo')->item(0), $canonical);
         $signatureValue = $signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
-        $decodedSignature = base64_decode(str_replace(array("\r", "\n"), '', $signatureValue));
+        $decodedSignature = \Safe\base64_decode(str_replace(array("\r", "\n"), '', $signatureValue));
         if (!$publicKey->verify($signInfoNode, $decodedSignature, $algorithm)) {
             throw SignerException::signatureComparisonFailed();
         }

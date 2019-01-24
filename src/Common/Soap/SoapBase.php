@@ -395,7 +395,7 @@ abstract class SoapBase implements SoapInterface
             //pois sua senha não existe além do tempo de execução desta classe
             $this->temppass = Strings::randomString(16);
             //encripta a chave privada entes da gravação do filesystem
-            openssl_pkey_export(
+            \Safe\openssl_pkey_export(
                 $this->certificate->privateKey,
                 $private,
                 $this->temppass
@@ -476,7 +476,7 @@ abstract class SoapBase implements SoapInterface
         }
         $this->debugdir = $cnpj() . '/debug/';
         $now = \DateTime::createFromFormat('U.u', microtime(true));
-        $time = substr($now->format("ymdHisu"), 0, 16);
+        $time = \Safe\substr($now->format("ymdHisu"), 0, 16);
         try {
             $this->filesystem->put(
                 $this->debugdir . $time . "_" . $operation . "_sol.txt",

@@ -13,8 +13,8 @@ use NFePHP\NFSeDSF\Common\FakePretty;
 try {
 
     $config = [
-        'cnpj'  => '99999999000191',
-        'im'    => '1733160024',
+        'cnpj'  => '04907793000188',
+        'im'    => '15178100',
         'cmun'  => '3170206', //ira determinar as urls e outros dados
         'razao' => 'Empresa Test Ltda',
         'tpamb' => 2 //1-producao, 2-homologacao
@@ -34,12 +34,12 @@ try {
 
     $arps = [];
     $std = new \stdClass();
-    $std->inscricaomunicipalprestador = '10517900';
-    $std->razaosocialprestador = 'EMPRESA MODELO';
+    $std->inscricaomunicipalprestador = '15178100';
+    $std->razaosocialprestador = 'Empresa Test Ltda';
     $std->tiporps = 'RPS';
     $std->serierps = 'NF';
     $std->numerorps = 84;
-    $std->dataemissaorps = '2009-11-21T15:30:00';
+    $std->dataemissaorps = '2019-01-24T15:30:00';
     $std->situacaorps = 'N';
 //$std->serierpssubstituido = '';
 //$std->numerorpssubstituido = '0';
@@ -47,23 +47,23 @@ try {
 //$std->dataemissaonfsesubstituida = '1900-01-01';
     $std->serieprestacao = '99';
     $std->inscricaomunicipaltomador = '0000000';
-    $std->cpfcnpjtomador = '00000000191';
-    $std->razaosocialtomador = 'EMPRESA DE TESTES';
+    $std->cpfcnpjtomador = '17606357000110';
+    $std->razaosocialtomador = 'VIRTUX TECNOLOGIA';
     $std->tipologradourotomador = 'Rua';
     $std->logradourotomador = 'SETE DE SETEMBRO';
     $std->numeroenderecotomador = '335';
     $std->complementoenderecotomador = '';
     $std->tipobairrotomador = 'Bairro';
     $std->bairrotomador = 'Centro';
-    $std->cidadetomador = '0001219';
-    $std->cidadetomadordescricao = 'TERESINA';
+    $std->cidadetomador = '5403';
+    $std->cidadetomadordescricao = 'UBERLANDIA';
     $std->ceptomador = '64001210';
     $std->emailtomador = 'res@bol.com.br';
-    $std->codigoatividade = '412040000';
-    $std->aliquotaatividade = 5.00;
+    $std->codigoatividade = '381220001';
+    $std->aliquotaatividade = 0.0000;
     $std->tiporecolhimento = 'A';
-    $std->municipioprestacao = '0001219';
-    $std->municipioprestacaodescricao = 'TERESINA';
+    $std->municipioprestacao = '5403';
+    $std->municipioprestacaodescricao = 'UBERLANDIA';
     $std->operacao = 'A';
     $std->tributacao = 'T';
     $std->valorpis = 0.00;
@@ -84,6 +84,7 @@ try {
 //$std->motcancelamento = '';
 //$std->cpfcnpjintermediario = '';
 
+/*
     $std->deducoes[0] = new stdClass();
     $std->deducoes[0]->deducaopor = 'Valor';
     $std->deducoes[0]->tipodeducao = 'Despesas com Materiais';
@@ -93,7 +94,7 @@ try {
     $std->deducoes[0]->percentualdeduzir = 0.00;
     $std->deducoes[0]->valordeduzir = 5.00;
     $std->deducoes[0]->tributavel = 'S';
-
+*/
     $std->itens[0] = new stdClass();
     $std->itens[0]->discriminacaoservico = "Descricao do Servico ...";
     $std->itens[0]->quantidade = 1;
