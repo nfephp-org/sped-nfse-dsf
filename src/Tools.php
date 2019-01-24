@@ -203,7 +203,7 @@ class Tools extends BaseTools
             . "<CodCidade>{$this->wsobj->siaf}</CodCidade>"
             . "<CPFCNPJRemetente>{$this->config->cnpj}</CPFCNPJRemetente>"
             . "<RazaoSocialRemetente>{$this->config->razao}</RazaoSocialRemetente>"
-            . "<transacao></transacao>"
+            . "<transacao>false</transacao>"
             . "<dtInicio>{$std->dtInicial}</dtInicio>"
             . "<dtFim>{$std->dtFinal}</dtFim>"
             . "<QtdRPS>{$std->qtdade}</QtdRPS>"
@@ -212,7 +212,7 @@ class Tools extends BaseTools
             . "<Versao>{$this->wsobj->version}</Versao>"
             . "<MetodoEnvio>WS</MetodoEnvio>"
             . "</Cabecalho>"
-            . "<Lote Id=\"lote:$lote\">";
+            . "<Lote Id=\"$lote\">";
         
         foreach ($rpsxmls as $xml) {
             $content .= $xml;

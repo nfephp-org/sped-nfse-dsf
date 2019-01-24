@@ -24,10 +24,14 @@ try {
     $password = 'associacao';
     $cert = Certificate::readPfx($content, $password);
 
+    // remova as linhas abaixo para usar em modo real
     $soap = new SoapFake();
     $soap->disableCertValidation(true);
+    // fim
     
     $tools = new Tools($configJson, $cert);
+    
+    // remova a linha abaixo para usar em modo real
     $tools->loadSoapClass($soap);
 
     $numero = '111';
@@ -36,7 +40,12 @@ try {
     
     $response = $tools->cancelar($numero, $motivo, $codigoverificacao);
 
+    // remova a linha abaixo ara usar em modo real
     echo FakePretty::prettyPrint($response, '');
+    
+    // descomente as linhas abaixo para usar em mode real
+    //header("Content-type: text/xml");
+    //echo $response;
  
 } catch (\Exception $e) {
     echo $e->getMessage();
