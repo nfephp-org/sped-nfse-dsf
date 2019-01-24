@@ -123,11 +123,11 @@ class Tools
      */
     public function __construct($config, Certificate $cert)
     {
-        $this->config = json_decode($config);
+        $this->config = \Safe\json_decode($config);
         $this->certificate = $cert;
         $this->buildPrestadorTag();
         $wsobj = $this->urls;
-        $this->wsobj = json_decode(json_encode($this->urls[$this->config->cmun]));
+        $this->wsobj = \Safe\json_decode(\Safe\json_encode($this->urls[$this->config->cmun]));
         $this->environment = 'homologacao';
         if ($this->config->tpamb === 1) {
             $this->environment = 'producao';

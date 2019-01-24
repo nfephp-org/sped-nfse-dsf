@@ -27,13 +27,25 @@ class Tools extends BaseTools
        
     protected $xsdpath;
     
+    /**
+     * Construtor
+     * @param string $config
+     * @param Certificate $cert
+     */
     public function __construct($config, Certificate $cert)
     {
         parent::__construct($config, $cert);
-        $path = realpath(__DIR__ . '/../storage/schemes');
+        $path = \Safe\realpath(__DIR__ . '/../storage/schemes');
         $this->xsdpath = $path;
     }
     
+    /**
+     * Cancela Nota
+     * @param string $numero
+     * @param string $motivo
+     * @param string $codigoverificacao
+     * @return string
+     */
     public function cancelar($numero, $motivo, $codigoverificacao): string
     {
         $operation = "cancelar";
@@ -63,6 +75,12 @@ class Tools extends BaseTools
         return $this->send($content, $operation);
     }
     
+    /**
+     * Consulta notas pelos seus numeros ou pelos numeros de RPS
+     * @param array $notas
+     * @param array $rps
+     * @return string
+     */
     public function consultarNFSeRps(array $notas = [], array $rps = []): string
     {
         $operation = "consultarNFSeRps";
@@ -84,7 +102,7 @@ class Tools extends BaseTools
         if (!empty($notas)) {
             $content .= "<NotaConsulta>";
             foreach ($notas as $nota) {
-                $n = json_decode(json_encode($nota));
+                $n = \Safe\json_decode(\Safe\json_encode($nota));
                 $content .= "<Nota Id=\"nota:{$n->numero}\">"
                     . "<InscricaoMunicipalPrestador>{$this->config->im}</InscricaoMunicipalPrestador>"
                     . "<NumeroNota>{$n->numero}</NumeroNota>"
@@ -97,7 +115,7 @@ class Tools extends BaseTools
         if (!empty($rps)) {
             $content .= "<RPSConsulta>";
             foreach ($rps as $rp) {
-                $n = json_decode(json_encode($rp));
+                $n = \Safe\json_decode(\Safe\json_encode($rp));
                 $content .= "<RPS Id=\"rps:119\">"
                     . "<InscricaoMunicipalPrestador>{$this->config->im}</InscricaoMunicipalPrestador>"
                     . "<NumeroRPS>{$n->numero}</NumeroRPS>"
@@ -113,6 +131,10 @@ class Tools extends BaseTools
         return $this->send($content, $operation);
     }
     
+    /**
+     * Consulta ultimo numero sequencial de RPS
+     * @return string
+     */
     public function consultarSequencialRps(): string
     {
         $operation = "consultarSequencialRps";
@@ -134,6 +156,11 @@ class Tools extends BaseTools
         return $this->send($content, $operation);
     }
     
+    /**
+     * Consulta Notas pelo numero do lote
+     * @param string $lote
+     * @return string
+     */
     public function consultarLote($lote): string
     {
         $operation = "consultarLote";
@@ -155,6 +182,12 @@ class Tools extends BaseTools
         return $this->send($content, $operation);
     }
     
+    /**
+     * Consulta Notas no intervalo das datas
+     * @param string $dtInicial
+     * @param string $dtFinal
+     * @return string
+     */
     public function consultarNota($dtInicial, $dtFinal): string
     {
         $operation = "consultarNota";
@@ -179,6 +212,12 @@ class Tools extends BaseTools
         return $this->send($content, $operation);
     }
     
+    /**
+     * Envia RSP em modo assincrono
+     * @param array $arps
+     * @param string $lote
+     * @return string
+     */
     public function enviar(array $arps, $lote): string
     {
         $operation = "enviar";
@@ -203,7 +242,7 @@ class Tools extends BaseTools
             . "<CodCidade>{$this->wsobj->siaf}</CodCidade>"
             . "<CPFCNPJRemetente>{$this->config->cnpj}</CPFCNPJRemetente>"
             . "<RazaoSocialRemetente>{$this->config->razao}</RazaoSocialRemetente>"
-            . "<transacao>false</transacao>"
+            . "<transacao>true</transacao>"
             . "<dtInicio>{$std->dtInicial}</dtInicio>"
             . "<dtFim>{$std->dtFinal}</dtFim>"
             . "<QtdRPS>{$std->qtdade}</QtdRPS>"
@@ -223,9 +262,16 @@ class Tools extends BaseTools
         
         $xmlsigned = $this->sign($content, 'Lote', 'Id');
         Validator::isValid($content, $this->xsdpath."/ReqEnvioLoteRPS.xsd");
+        
         return $this->send($xmlsigned, $operation);
     }
     
+    /**
+     * Envia RPS em modo sincrono
+     * @param array $arps
+     * @param string $lote
+     * @return string
+     */
     public function enviarSincrono(array $arps, $lote): string
     {
         $operation = "enviarSincrono";
@@ -249,7 +295,7 @@ class Tools extends BaseTools
             . "<CodCidade>{$this->wsobj->siaf}</CodCidade>"
             . "<CPFCNPJRemetente>{$this->config->cnpj}</CPFCNPJRemetente>"
             . "<RazaoSocialRemetente>{$this->config->razao}</RazaoSocialRemetente>"
-            . "<transacao></transacao>"
+            . "<transacao>true</transacao>"
             . "<dtInicio>{$std->dtInicial}</dtInicio>"
             . "<dtFim>{$std->dtFinal}</dtFim>"
             . "<QtdRPS>{$std->qtdade}</QtdRPS>"
@@ -270,9 +316,18 @@ class Tools extends BaseTools
         
         $xmlsigned = $this->sign($content, 'Lote', 'Id');
         Validator::isValid($content, $this->xsdpath."/ReqEnvioLoteRPS.xsd");
+        
         return $this->send($xmlsigned, $operation);
     }
     
+    /**
+     * Constroi os RPS em XML e retorna em um array
+     * os valores e datas dos RPS são retornados em
+     * um stdClass passado por referencia
+     * @param array $arps
+     * @param stdClass $std
+     * @return array
+     */
     protected function buildRpsXml(array $arps, \stdClass &$std)
     {
         $std->dtInicial = '';
@@ -281,8 +336,8 @@ class Tools extends BaseTools
         $std->vTotServ = 0;
         $std->vTotDeduc = 0;
         $std->qtdade = count($arps);
-        $dtIni = '';
-        $dtFim = '';
+        $dtIni = null;
+        $dtFim = null;
         $rpsxmls = [];
         foreach ($arps as $rps) {
             if (empty($dtIni)) {
@@ -312,7 +367,13 @@ class Tools extends BaseTools
         return $rpsxmls;
     }
     
-    protected function bigger(Datetime $dt1, DateTime $dt2)
+    /**
+     * Verifica qual é a maior data entre as passadas como parâmetro
+     * @param \Datetime $dt1
+     * @param \DateTime $dt2
+     * @return \Datetime
+     */
+    protected function bigger(\Datetime $dt1, \DateTime $dt2)
     {
         if ($dt1 > $dt2) {
             return $dt1;
@@ -321,7 +382,13 @@ class Tools extends BaseTools
         }
     }
     
-    protected function smaller(Datetime $dt1, DateTime $dt2)
+    /**
+     * Verifica qual é a menor data entre as passadas como parâmetro
+     * @param \Datetime $dt1
+     * @param \DateTime $dt2
+     * @return \Datetime
+     */
+    protected function smaller(\Datetime $dt1, \DateTime $dt2)
     {
         if ($dt1 < $dt2) {
             return $dt1;

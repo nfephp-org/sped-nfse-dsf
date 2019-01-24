@@ -22,15 +22,16 @@
         "ext-openssl": "*",
         "ext-json": "*",
         "ext-simplexml": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "thecodingmachine/safe": "^0.1.11"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^2.8",
-        "phpunit/phpunit": "^5.7",
+        "squizlabs/php_codesniffer": "^3.4",
+        "phpunit/phpunit": "^7.5",
         "scrutinizer/ocular": "^1.3",
-        "phpmd/phpmd": "dev-master",
-        "sebastian/phpcpd": "^3.0",
-        "phpstan/phpstan": "^0.9.2"
+        "phpstan/phpstan": "^0.11",
+        "thecodingmachine/phpstan-safe-rule": "^0.1.2",
+        "rector/rector": "^0.3.37"
     },
     "autoload": {
         "psr-4": {
@@ -46,7 +47,8 @@
         "test": "phpunit -c phpunit.xml.dist",
         "phpcbf": "vendor/bin/phpcbf --standard=psr2 src; vendor/bin/phpcbf --standard=psr2 tests",
         "phpcs": "vendor/bin/phpcs --standard=psr2 src; vendor/bin/phpcs --standard=psr2 tests",
-        "phpstan": "vendor/bin/phpstan analyse src/ --level 7"
+        "phpstan": "vendor/bin/phpstan analyse src/ --level 7",
+        "rector": "vendor/bin/rector process src/ --config vendor/thecodingmachine/safe/rector-migrate.yml"
     },
     "extra": {
         "branch-alias": {

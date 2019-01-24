@@ -42,7 +42,7 @@ class SoapFake extends SoapBase implements SoapInterface
         $requestHead = implode("\n", $parameters);
         $requestBody = $envelope;
         
-        return json_encode([
+        return \Safe\json_encode([
             'url' => $url,
             'operation' => $operation,
             'action' => $action,

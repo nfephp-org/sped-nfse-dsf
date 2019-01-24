@@ -56,44 +56,44 @@ class SoapCurl extends SoapBase implements SoapInterface
         
         try {
             $this->saveTemporarilyKeyFiles();
-            $oCurl = curl_init();
+            $oCurl = \Safe\curl_init();
             $this->setCurlProxy($oCurl);
-            curl_setopt($oCurl, CURLOPT_URL, $url);
-            curl_setopt($oCurl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-            curl_setopt($oCurl, CURLOPT_CONNECTTIMEOUT, $this->soaptimeout);
-            curl_setopt($oCurl, CURLOPT_TIMEOUT, $this->soaptimeout + 20);
-            curl_setopt($oCurl, CURLOPT_HEADER, 1);
-            curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, 0);
+            \Safe\curl_setopt($oCurl, CURLOPT_URL, $url);
+            \Safe\curl_setopt($oCurl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+            \Safe\curl_setopt($oCurl, CURLOPT_CONNECTTIMEOUT, $this->soaptimeout);
+            \Safe\curl_setopt($oCurl, CURLOPT_TIMEOUT, $this->soaptimeout + 20);
+            \Safe\curl_setopt($oCurl, CURLOPT_HEADER, 1);
+            \Safe\curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 0);
+            \Safe\curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, 0);
             if (!$this->disablesec) {
-                curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 2);
+                \Safe\curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 2);
                 if (is_file($this->casefaz)) {
-                    curl_setopt($oCurl, CURLOPT_CAINFO, $this->casefaz);
+                    \Safe\curl_setopt($oCurl, CURLOPT_CAINFO, $this->casefaz);
                 }
             }
-            curl_setopt($oCurl, CURLOPT_SSLVERSION, $this->soapprotocol);
-            curl_setopt($oCurl, CURLOPT_SSLCERT, $this->tempdir . $this->certfile);
-            curl_setopt($oCurl, CURLOPT_SSLKEY, $this->tempdir . $this->prifile);
+            \Safe\curl_setopt($oCurl, CURLOPT_SSLVERSION, $this->soapprotocol);
+            \Safe\curl_setopt($oCurl, CURLOPT_SSLCERT, $this->tempdir . $this->certfile);
+            \Safe\curl_setopt($oCurl, CURLOPT_SSLKEY, $this->tempdir . $this->prifile);
             if (!empty($this->temppass)) {
-                curl_setopt($oCurl, CURLOPT_KEYPASSWD, $this->temppass);
+                \Safe\curl_setopt($oCurl, CURLOPT_KEYPASSWD, $this->temppass);
             }
-            curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
+            \Safe\curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
             if (! empty($envelope)) {
-                curl_setopt($oCurl, CURLOPT_POST, true);
-                curl_setopt($oCurl, CURLOPT_POSTFIELDS, $envelope);
-                curl_setopt($oCurl, CURLOPT_HTTPHEADER, $parameters);
+                \Safe\curl_setopt($oCurl, CURLOPT_POST, true);
+                \Safe\curl_setopt($oCurl, CURLOPT_POSTFIELDS, $envelope);
+                \Safe\curl_setopt($oCurl, CURLOPT_HTTPHEADER, $parameters);
             }
-            $response = curl_exec($oCurl);
+            $response = \Safe\curl_exec($oCurl);
             $this->soaperror = curl_error($oCurl);
-            $ainfo = curl_getinfo($oCurl);
+            $ainfo = \Safe\curl_getinfo($oCurl);
             if (is_array($ainfo)) {
                 $this->soapinfo = $ainfo;
             }
-            $headsize = curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);
-            $httpcode = curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
+            $headsize = \Safe\curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);
+            $httpcode = \Safe\curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
             curl_close($oCurl);
-            $this->responseHead = trim(substr($response, 0, $headsize));
-            $this->responseBody = trim(substr($response, $headsize));
+            $this->responseHead = trim(\Safe\substr($response, 0, $headsize));
+            $this->responseBody = trim(\Safe\substr($response, $headsize));
             $this->saveDebugFiles(
                 $operation,
                 $this->requestHead . "\n" . $this->requestBody,
@@ -124,25 +124,25 @@ class SoapCurl extends SoapBase implements SoapInterface
         $response = '';
         $this->saveTemporarilyKeyFiles();
         $url .= '?singleWsdl';
-        $oCurl = curl_init();
-        curl_setopt($oCurl, CURLOPT_URL, $url);
-        curl_setopt($oCurl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-        curl_setopt($oCurl, CURLOPT_CONNECTTIMEOUT, $this->soaptimeout);
-        curl_setopt($oCurl, CURLOPT_TIMEOUT, $this->soaptimeout + 20);
-        curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($oCurl, CURLOPT_SSLVERSION, $this->soapprotocol);
-        curl_setopt($oCurl, CURLOPT_SSLCERT, $this->tempdir . $this->certfile);
-        curl_setopt($oCurl, CURLOPT_SSLKEY, $this->tempdir . $this->prifile);
+        $oCurl = \Safe\curl_init();
+        \Safe\curl_setopt($oCurl, CURLOPT_URL, $url);
+        \Safe\curl_setopt($oCurl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        \Safe\curl_setopt($oCurl, CURLOPT_CONNECTTIMEOUT, $this->soaptimeout);
+        \Safe\curl_setopt($oCurl, CURLOPT_TIMEOUT, $this->soaptimeout + 20);
+        \Safe\curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 0);
+        \Safe\curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, 0);
+        \Safe\curl_setopt($oCurl, CURLOPT_SSLVERSION, $this->soapprotocol);
+        \Safe\curl_setopt($oCurl, CURLOPT_SSLCERT, $this->tempdir . $this->certfile);
+        \Safe\curl_setopt($oCurl, CURLOPT_SSLKEY, $this->tempdir . $this->prifile);
         if (!empty($this->temppass)) {
-            curl_setopt($oCurl, CURLOPT_KEYPASSWD, $this->temppass);
+            \Safe\curl_setopt($oCurl, CURLOPT_KEYPASSWD, $this->temppass);
         }
-        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($oCurl);
+        \Safe\curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
+        $response = \Safe\curl_exec($oCurl);
         $soaperror = curl_error($oCurl);
-        $ainfo = curl_getinfo($oCurl);
-        $headsize = curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);
-        $httpcode = curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
+        $ainfo = \Safe\curl_getinfo($oCurl);
+        $headsize = \Safe\curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);
+        $httpcode = \Safe\curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
         curl_close($oCurl);
         if ($httpcode != 200) {
             return '';
@@ -157,12 +157,12 @@ class SoapCurl extends SoapBase implements SoapInterface
     private function setCurlProxy(&$oCurl)
     {
         if ($this->proxyIP != '') {
-            curl_setopt($oCurl, CURLOPT_HTTPPROXYTUNNEL, 1);
-            curl_setopt($oCurl, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-            curl_setopt($oCurl, CURLOPT_PROXY, $this->proxyIP.':'.$this->proxyPort);
+            \Safe\curl_setopt($oCurl, CURLOPT_HTTPPROXYTUNNEL, 1);
+            \Safe\curl_setopt($oCurl, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+            \Safe\curl_setopt($oCurl, CURLOPT_PROXY, $this->proxyIP.':'.$this->proxyPort);
             if ($this->proxyUser != '') {
-                curl_setopt($oCurl, CURLOPT_PROXYUSERPWD, $this->proxyUser.':'.$this->proxyPass);
-                curl_setopt($oCurl, CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
+                \Safe\curl_setopt($oCurl, CURLOPT_PROXYUSERPWD, $this->proxyUser.':'.$this->proxyPass);
+                \Safe\curl_setopt($oCurl, CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
             }
         }
     }

@@ -24,10 +24,10 @@ class FakePretty
             $html = "Sem resposta";
             return $html;
         }
-        $std = json_decode($response);
+        $std = \Safe\json_decode($response);
         if (!empty($save)) {
-            file_put_contents(
-                realpath("../../tests/fixtures/xml/$save.xml"),
+            \Safe\file_put_contents(
+                \Safe\realpath("../../tests/fixtures/xml/$save.xml"),
                 $std->body
             );
         }
@@ -59,7 +59,7 @@ class FakePretty
         $html .= $std->header;
         $html .= "<br>";
         $html .= '<h2>namespaces</h2>';
-        $an = json_decode(json_encode($std->namespaces), true);
+        $an = \Safe\json_decode(\Safe\json_encode($std->namespaces), true);
         foreach ($an as $key => $nam) {
             $html .= "[$key] => $nam <br>";
         }

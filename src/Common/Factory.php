@@ -22,7 +22,6 @@ use DOMElement;
 
 class Factory
 {
-
     /**
      * @var stdClass
      */
@@ -229,7 +228,7 @@ class Factory
         $this->dom->addChild(
             $this->rps,
             "AliquotaAtividade",
-            number_format($this->std->aliquotaatividade, 2, '.', ''),
+            number_format($this->std->aliquotaatividade, 4, '.', ''),
             true
         );
         $this->dom->addChild(
@@ -457,7 +456,7 @@ class Factory
     
     /**
      * Cria a assinatura do RPS
-     * @param Rps $rps
+     * @param Certificate $certificate
      * @return string
      */
     protected function signstr(Certificate $certificate = null): string
@@ -473,8 +472,8 @@ class Factory
         $content .= ($this->std->tiporecolhimento == 'A') ? 'N' : 'S';
         
         $valores = $this->calcValor();
-        $content .= str_pad(round($valores->valorFinal * 100, 0), 15, '0', STR_PAD_LEFT);
-        $content .= str_pad(round($valores->valorDeducao * 100, 0), 15, '0', STR_PAD_LEFT);
+        $content .= str_pad((string) round($valores->valorFinal * 100, 0), 15, '0', STR_PAD_LEFT);
+        $content .= str_pad((string) round($valores->valorDeducao * 100, 0), 15, '0', STR_PAD_LEFT);
         $content .= str_pad($this->std->codigoatividade, 10, '0', STR_PAD_LEFT);
         $content .= str_pad($this->std->cpfcnpjtomador, 14, '0', STR_PAD_LEFT);
         return sha1($content);

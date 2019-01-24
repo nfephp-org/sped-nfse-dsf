@@ -66,7 +66,7 @@ class Rps implements RpsInterface
     private function init(stdClass $rps)
     {
         $this->std = $this->propertiesToLower($rps);
-        $this->jsonschema = realpath("../storage/jsonSchemes/rps.schema");
+        $this->jsonschema = \Safe\realpath("../storage/jsonSchemes/rps.schema");
         $this->validInputData($this->std);
     }
     
@@ -105,7 +105,7 @@ class Rps implements RpsInterface
         if (!$validator->isValid()) {
             $msg = "";
             foreach ($validator->getErrors() as $error) {
-                $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']);
+                $msg .= \Safe\sprintf("[%s] %s\n", $error['property'], $error['message']);
             }
             throw new \InvalidArgumentException($msg);
         }
