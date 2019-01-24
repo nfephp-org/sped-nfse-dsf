@@ -466,7 +466,6 @@ class Factory
         $content = str_pad($this->std->inscricaomunicipalprestador, 11, '0', STR_PAD_LEFT);
         $content .= str_pad($this->std->serierps, 5, ' ', STR_PAD_RIGHT);
         $content .= str_pad($this->std->numerorps, 12, '0', STR_PAD_LEFT);
-        
         $dt = new \DateTime($this->std->dataemissaorps);
         $content .= $dt->format('Ymd');
         $content .= str_pad($this->std->tributacao, 2, ' ', STR_PAD_RIGHT);
@@ -478,12 +477,13 @@ class Factory
         $content .= str_pad(round($valores->valorDeducao * 100, 0), 15, '0', STR_PAD_LEFT);
         $content .= str_pad($this->std->codigoatividade, 10, '0', STR_PAD_LEFT);
         $content .= str_pad($this->std->cpfcnpjtomador, 14, '0', STR_PAD_LEFT);
-        if (isset($certificate)) {
-            $signature = base64_encode($certificate->sign($content, OPENSSL_ALGO_SHA1));
-        }
-        return $signature;
+        return sha1($content);
     }
-
+    
+    /**
+     * Calcula totais
+     * @return stdClass
+     */
     protected function calcValor(): stdClass
     {
         $std = new stdClass();

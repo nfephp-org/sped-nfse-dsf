@@ -118,7 +118,7 @@ class Signer
         $idSigned = trim($node->getAttribute($mark));
         $digestValue = self::makeDigest($node, $digestAlgorithm, $canonical);
         $signatureNode = $dom->createElementNS($nsDSIG, 'Signature');
-        $signatureNode->setAttribute('Id', 'Ass_'.$idSigned);
+        //$signatureNode->setAttribute('Id', 'Ass_'.$idSigned);
         
         $root->appendChild($signatureNode);
         $signedInfoNode = $dom->createElement('SignedInfo');
