@@ -109,10 +109,10 @@ try {
 
     $response = $tools->enviar($arps, $lote);
 
-    header('Content-Type: application/xml; charset=utf-8');
-    echo $response;
+    //header('Content-Type: application/xml; charset=utf-8');
+    //echo $response;
     
-    //echo FakePretty::prettyPrint($response, '');
+    echo FakePretty::prettyPrint($response, '');
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

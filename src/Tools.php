@@ -61,7 +61,7 @@ class Tools extends BaseTools
             . "<CPFCNPJRemetente>{$this->config->cnpj}</CPFCNPJRemetente>"
             . "<transacao>true</transacao>"
             . "<Versao>{$this->wsobj->version}</Versao></Cabecalho>"
-            . "<Lote Id=\"lote:$lote\">"
+            . "<Lote Id=\"$lote\">"
             . "<Nota Id=\"nota:$numero\">"
             . "<InscricaoMunicipalPrestador>{$this->config->im}</InscricaoMunicipalPrestador>"
             . "<NumeroNota>$numero</NumeroNota>"
@@ -71,7 +71,10 @@ class Tools extends BaseTools
             . "</Lote>"
             . "</ns1:ReqCancelamentoNFSe>";
         
+        $content = $this->sign($content, 'Lote', 'Id');
+        
         Validator::isValid($content, $this->xsdpath."/ReqCancelamentoNFSe.xsd");
+        
         return $this->send($content, $operation);
     }
     
