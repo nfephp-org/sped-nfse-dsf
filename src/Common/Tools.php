@@ -42,7 +42,14 @@ class Tools
             'producao' => 'http://www.issdigitalbel.com.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => false,
+                'consultarNota' => true
+            ]
         ],
         '3509502' => [
             'municipio' => 'Campinas',
@@ -52,7 +59,14 @@ class Tools
             'producao' => 'http://issdigital.campinas.sp.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => false,
+                'consultarNota' => true
+            ]
         ],
         '5002704' => [
             'municipio' => 'Campo Grande',
@@ -62,7 +76,14 @@ class Tools
             'producao' => 'http://issdigital.pmcg.ms.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => false,
+                'consultarNota' => false
+            ]
         ],
         '3303500' => [
             'municipio' => 'Nova Iguacu',
@@ -72,7 +93,14 @@ class Tools
             'producao' => 'http://www.notamaisfacil.novaiguacu.rj.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://wsnfe2.dsfnet.com.br'
+            'soapns' => 'http://wsnfe2.dsfnet.com.br',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => false,
+                'consultarNota' => false
+            ]
         ],
         '2111300' => [
             'municipio' => 'Sao Luiz',
@@ -82,7 +110,14 @@ class Tools
             'producao' => 'http://stm.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://sistemas.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps.jws'
+            'soapns' => 'http://sistemas.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps.jws',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => true,
+                'consultarNota' => true
+            ]
         ],
         '3552205' => [
             'municipio' => 'Sorocaba',
@@ -92,7 +127,14 @@ class Tools
             'producao' => 'http://www.issdigitalsod.com.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => false,
+                'consultarNota' => false
+            ]
         ],
         '2211001' => [
             'municipio' => 'Terezina',
@@ -102,7 +144,14 @@ class Tools
             'producao' => 'http://www.issdigitalthe.com.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => false,
+                'consultarNota' => true
+            ]
         ],
         '3170206' => [
             'municipio' => 'Uberlandia',
@@ -112,7 +161,14 @@ class Tools
             'producao' => 'http://udigital.uberlandia.mg.gov.br/WsNFe2/LoteRps.jws',
             'version' => '1',
             'msgns' => '',
-            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br'
+            'soapns' => 'http://proces.wsnfe2.dsfnet.com.br',
+            'sign' => [
+                'enviar' => true,
+                'enviarSincrono' => true,
+                'cancelar' => true,
+                'consultarNFSeRps' => false,
+                'consultarNota' => false
+            ]
         ]
     ];
     
