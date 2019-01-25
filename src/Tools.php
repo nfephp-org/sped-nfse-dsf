@@ -71,8 +71,9 @@ class Tools extends BaseTools
             . "</Lote>"
             . "</ns1:ReqCancelamentoNFSe>";
         
-        $content = $this->sign($content, 'Lote', 'Id');
-        
+        if ($this->wsobj->sign->$operation) {
+            $content = $this->sign($content, 'Lote', 'Id');
+        }
         Validator::isValid($content, $this->xsdpath."/ReqCancelamentoNFSe.xsd");
         
         return $this->send($content, $operation);
@@ -100,7 +101,7 @@ class Tools extends BaseTools
             . "<transacao>true</transacao>"
             . "<Versao>{$this->wsobj->version}</Versao>"
             . "</Cabecalho>"
-            . "<Lote Id=\"lote:$lote\">";
+            . "<Lote Id=\"$lote\">";
         
         if (!empty($notas)) {
             $content .= "<NotaConsulta>";
@@ -129,13 +130,16 @@ class Tools extends BaseTools
         }
         $content .= "</Lote>"
             . "</ns1:ReqConsultaNFSeRPS>";
-        
+     
+        if ($this->wsobj->sign->$operation) {
+            $content = $this->sign($content, 'Lote', 'Id');
+        }
         Validator::isValid($content, $this->xsdpath."/ReqConsultaNFSeRPS.xsd");
         return $this->send($content, $operation);
     }
     
     /**
-     * Consulta ultimo numero sequencial de RPS
+     * Consulta último número sequencial de RPS
      * @return string
      */
     public function consultarSequencialRps(): string
@@ -191,17 +195,17 @@ class Tools extends BaseTools
      * @param string $dtFinal
      * @return string
      */
-    public function consultarNota($dtInicial, $dtFinal): string
+    public function consultarNota($dtInicial, $dtFinal, $id): string
     {
         $operation = "consultarNota";
-        
+        $lote = date('ymdHis');
         $content = "<ns1_ReqConsultaNotas "
             . "xmlns:ns1=\"http://localhost:8080/WsNFe2/lote\" "
             . "xmlns:tipos=\"http://localhost:8080/WsNFe2/tp\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
             . "xsi:schemaLocation=\"http://localhost:8080/WsNFe2/lote "
             . "http://localhost:8080/WsNFe2/xsd/ReqConsultaNotas.xsd\">"
-            . "<Cabecalho>"
+            . "<Cabecalho Id=\"$lote\">"
             . "<CodCidade>{$this->wsobj->siaf}</CodCidade>"
             . "<CPFCNPJRemetente>{$this->config->cnpj}</CPFCNPJRemetente>"
             . "<InscricaoMunicipalPrestador>{$this->config->im}</InscricaoMunicipalPrestador>"
@@ -210,7 +214,10 @@ class Tools extends BaseTools
             . "<Versao>{$this->wsobj->version}</Versao>"
             . "</Cabecalho>"
             . "</ns1_ReqConsultaNotas>";
-        
+
+        if ($this->wsobj->sign->$operation) {
+            $content = $this->sign($content, 'Cabecalho', 'Id');
+        }
         Validator::isValid($content, $this->xsdpath."/ReqConsultaNotas.xsd");
         return $this->send($content, $operation);
     }
@@ -224,17 +231,13 @@ class Tools extends BaseTools
     public function enviar(array $arps, $lote): string
     {
         $operation = "enviar";
-        
         $std = new \stdClass();
         $std->dtInicial = '';
         $std->dtFinal = '';
         $std->qtdade = 0;
         $std->vTotServ = 0;
         $std->vTotDeduc = 0;
-        
-        
         $rpsxmls = $this->buildRpsXml($arps, $std);
-        
         $content = "<ns1:ReqEnvioLoteRPS "
             . "xmlns:ns1=\"http://localhost:8080/WsNFe2/lote\" "
             . "xmlns:tipos=\"http://localhost:8080/WsNFe2/tp\" "
@@ -263,10 +266,11 @@ class Tools extends BaseTools
         $content .= "</Lote>"
             . "</ns1:ReqEnvioLoteRPS>";
         
-        $xmlsigned = $this->sign($content, 'Lote', 'Id');
+        if ($this->wsobj->sign->$operation) {
+            $content = $this->sign($content, 'Lote', 'Id');
+        }
         Validator::isValid($content, $this->xsdpath."/ReqEnvioLoteRPS.xsd");
-        
-        return $this->send($xmlsigned, $operation);
+        return $this->send($content, $operation);
     }
     
     /**
@@ -312,15 +316,15 @@ class Tools extends BaseTools
         foreach ($rpsxmls as $xml) {
             $content .= $xml;
         }
-        
         $content .= "</Lote>"
             . "</ns1:ReqEnvioLoteRPS>";
         
         
-        $xmlsigned = $this->sign($content, 'Lote', 'Id');
+        if ($this->wsobj->sign->$operation) {
+            $content = $this->sign($content, 'Lote', 'Id');
+        }
         Validator::isValid($content, $this->xsdpath."/ReqEnvioLoteRPS.xsd");
-        
-        return $this->send($xmlsigned, $operation);
+        return $this->send($content, $operation);
     }
     
     /**
