@@ -1,5 +1,7 @@
 # sped-nfse-dsf
 
+# ABANDONADO NÃO SERÁ MAIS MANTIDO
+
 O modelo de NFSe denomindado DSF (ou IssDSF ou ainda DSFNet)
 
 Atende as prefeituras de:
